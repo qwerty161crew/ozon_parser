@@ -1,4 +1,5 @@
 from config import config
+
 from fastapi import FastAPI
 
 
