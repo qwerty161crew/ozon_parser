@@ -1,6 +1,5 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-
 ENV_PREFIX = ".env"
 
 
@@ -17,13 +16,13 @@ class PostgresSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix=ENV_PREFIX)
     db_name: str = "parser"
     db_user: str = "postgres"
-    db_host: str = "127.0.0.1"
+    db_host: str = "localhost"
     db_port: int = 5432
-    db_password: str = "your_password"
+    db_password: str = "1917"
 
     @property
     def db_url(self):
-        return f"postgresql:asyncpg//{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}"
+        return f"postgresql+asyncpg://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}"
 
 
 class Config(BaseSettings):
@@ -42,6 +41,6 @@ class Config(BaseSettings):
         return Config(
             app=ServerSettings(),
             # prefixes=APIPrefixes(),
-            # # postgresql=PostgreSQL(),
+            postgresql=PostgresSettings(),
             # # security=Security(),
         )

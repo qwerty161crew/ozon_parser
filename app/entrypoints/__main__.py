@@ -2,7 +2,6 @@ import uvicorn
 
 from app.config import config
 
-
 uvicorn.run(
     app="app.entrypoints.main:create_app",
     factory=True,

@@ -1,8 +1,6 @@
 from typing import List
 
-from fastapi import APIRouter, Query, Depends
-
-
+from fastapi import APIRouter, Depends, Query
 from schema.ozon import OzonProduct
 
 ozon_router = APIRouter(prefix="/ozon")
