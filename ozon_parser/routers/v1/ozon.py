@@ -3,9 +3,9 @@ from typing import List
 from fastapi import APIRouter, Depends
 
 
-from schema.ozon import OzonProduct
-from schema import GreatOfferParser
-from app.services.ozon import ParserService, get_parser_service
+from ozon_parser.schema.ozon import OzonProduct
+from ozon_parser.schema import GreatOfferParser
+from ozon_parser.services.ozon import ParserService, get_parser_service
 
 ozon_router = APIRouter(prefix="/ozon")
 

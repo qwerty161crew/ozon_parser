@@ -1,4 +1,4 @@
-from config import config
+from ozon_parser.config import config
 
 from fastapi import FastAPI
 
