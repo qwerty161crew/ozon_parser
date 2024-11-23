@@ -1,3 +1,3 @@
-from schema.ozon.product import OzonProduct
+from .product import OzonProduct
 
 __all__ = ["OzonProduct"]
