@@ -1,3 +1,15 @@
-from .parse import GreatOfferParser
+from .parse import (
+    CheckTaskStatus,
+    CreateTaskParser,
+    GetResultParse,
+    ReposneIdTask,
+    ResponeCheckTask,
+)
 
-__all__ = ["GreatOfferParser"]
+__all__ = [
+    "CreateTaskParser",
+    "CheckTaskStatus",
+    "ReposneIdTask",
+    "ResponeCheckTask",
+    "GetResultParse",
+]

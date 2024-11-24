@@ -1,24 +1,20 @@
-import asyncio
-
-from httpx import AsyncClient
-from playwright.async_api import async_playwright
-
-from ozon_parser.adapter.ozon import OzonParser, get_ozon_parser
-from ozon_parser.schema import GreatOfferParser
+from ozon_parser.schema import CheckTaskStatus, CreateTaskParser, ReposneIdTask
+from ozon_parser.schema.ozon import OzonProduct
 
 
 class ParserService:
-    def __init__(self, parser: OzonParser, http_client: AsyncClient):
-        self.parser = parser
-        self.http_client = http_client
+    def __init__(self):
+        pass
 
-    async def get_great_offers_in_ozon(self, parse_condition: GreatOfferParser) -> None:
-        async with async_playwright() as playwright:
-            browser = await playwright.firefox.launch()
-            print(browser)
+    async def create_task(self, parse_condition: CreateTaskParser) -> ReposneIdTask:
+        pass
+
+    async def check_task(self, check_status: CheckTaskStatus) -> CheckTaskStatus:
+        pass
+
+    async def get_the_parsing_result(self, task_id: str) -> list[OzonProduct]:
+        pass
 
 
 async def get_parser_service() -> ParserService:
-    # adapter = await get_httpx_adapter()
-    ozon_parser = await get_ozon_parser()
-    return ParserService(http_client=AsyncClient(), parser=ozon_parser)
+    return ParserService()
