@@ -1,9 +1,11 @@
+from ozon_parser.db import get_repository
 from ozon_parser.schema import CheckTaskStatus, CreateTaskParser, ReposneIdTask
 from ozon_parser.schema.ozon import OzonProduct
+from ozon_parser.worker import Publisher, get_publisher
 
 
 class ParserService:
-    def __init__(self):
+    def __init__(self, publisher: Publisher):
         pass
 
     async def create_task(self, parse_condition: CreateTaskParser) -> ReposneIdTask:
@@ -17,4 +19,5 @@ class ParserService:
 
 
 async def get_parser_service() -> ParserService:
-    return ParserService()
+    publisher = await get_publisher()
+    return ParserService(publisher=publisher)

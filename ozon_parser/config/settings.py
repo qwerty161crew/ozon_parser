@@ -12,6 +12,14 @@ class ServerSettings(BaseSettings):
     app_name: str = "My Application"
 
 
+class RabbitmqSettings(BaseSettings):
+    model_config = SettingsConfigDict(env_prefix=ENV_PREFIX)
+    host: str = "localhost"
+    port: int = 5672
+    user: str = "guest"
+    password: str = "guest"
+
+
 class PostgresSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix=ENV_PREFIX)
     db_name: str = "parser"
@@ -32,15 +40,14 @@ class Config(BaseSettings):
         env_file: str = ENV_PREFIX
 
     app: ServerSettings
-    # prefixes: APIPrefixes
     postgresql: PostgresSettings
-    # security: Security
+    rabbig_mq: RabbitmqSettings
 
     @classmethod
     def create(cls) -> "Config":
         return Config(
             app=ServerSettings(),
-            # prefixes=APIPrefixes(),
+            rabbig_mq=RabbitmqSettings(),
             postgresql=PostgresSettings(),
             # # security=Security(),
         )

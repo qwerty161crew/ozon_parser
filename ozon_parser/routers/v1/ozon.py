@@ -22,16 +22,16 @@ async def parse_great_offers(
     return True
 
 
-@ozon_router.post("/check_staus", response_model=ResponeCheckTask)
-async def check_status_task(
-    check_data: CheckTaskStatus,
-    parser_service: ParserService = Depends(get_parser_service),
-):
-    pass
+# @ozon_router.post("/check_staus", response_model=ResponeCheckTask)
+# async def check_status_task(
+#     check_data: CheckTaskStatus,
+#     parser_service: ParserService = Depends(get_parser_service),
+# ):
+#     pass
 
 
-@ozon_router.post("/get_result/{uuid}", response_model=list[OzonProduct])
-async def get_result_pars(
-    uuid: GetResultParse, parser_service: ParserService = Depends(get_parser_service)
-):
-    pass
+# @ozon_router.post("/get_result/{uuid}", response_model=list[OzonProduct])
+# async def get_result_pars(
+#     uuid: GetResultParse, parser_service: ParserService = Depends(get_parser_service)
+# ):
+#     pass
