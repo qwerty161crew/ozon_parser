@@ -2,6 +2,7 @@ import asyncio
 import json
 import uuid
 
+import aio_pika.abc
 from aio_pika import Message, connect_robust
 from aio_pika.robust_connection import AbstractRobustConnection
 
@@ -23,6 +24,7 @@ class Publisher:
             )
 
     async def close_connection(self):
+
         if self.connect is not None:
             await self.connect.close()
 
@@ -41,17 +43,28 @@ class Publisher:
         """
         {
         'job_id': uuid.uuid4(),
-        'items': [{},{}]
+        'start_url': "",
+        'product_type': "",
         }
         """
-        async with self.connect:
-            channel = await self.connect.channel()
+        # if self.connect is None:
+        channel: aio_pika.abc.AbstractChannel = await self.connect.channel()
 
+        async with self.connect:
+            # print(json.dumps(message), "1322222222222222222222222222222")
+            print(json.dumps(message))
             await channel.default_exchange.publish(
-                Message(body=json.dumps(message)),
+                Message(body=json.dumps(message).encode("utf-8")),
                 routing_key=routing_key,
             )
+            await asyncio.sleep(25)
 
 
 async def get_publisher():
-    return Publisher(**config.rabbig_mq)
+    print(config.rabbig_mq)
+    return Publisher(
+        user=config.rabbig_mq.user,
+        host=config.rabbig_mq.host,
+        port=config.rabbig_mq.port,
+        password=config.rabbig_mq.password,
+    )

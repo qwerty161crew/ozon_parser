@@ -1,6 +1,7 @@
-from config import config
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
+
+from ozon_parser.config import config
 
 engine = create_async_engine(
     config.postgresql.db_url,

@@ -24,12 +24,13 @@ class PostgresSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix=ENV_PREFIX)
     db_name: str = "parser"
     db_user: str = "postgres"
-    db_host: str = "localhost"
-    db_port: int = 5432
+    db_host: str = "127.0.0.1"
+    db_port: int = 5431
     db_password: str = "1917"
 
     @property
     def db_url(self):
+
         return f"postgresql+asyncpg://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}"
 
 

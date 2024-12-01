@@ -1,6 +1,8 @@
-import uuid
+from uuid import UUID
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
+
+from ozon_parser.db import StateEnum
 
 
 class CreateTaskParser(BaseModel):
@@ -8,17 +10,22 @@ class CreateTaskParser(BaseModel):
     start_url: str
 
 
-class ReposneIdTask(BaseModel):
-    task_id: uuid.uuid4
+class ResponseIdTask(BaseModel):
+    task_id: UUID
 
 
 class CheckTaskStatus(BaseModel):
-    task_id: uuid.uuid4
+
+    task_id: UUID
 
 
 class ResponeCheckTask(CheckTaskStatus):
-    result_url: str | None
+    model_config = ConfigDict(from_attributes=True)
+    task_id: UUID
+    state: StateEnum
+    message: str | None
 
 
 class GetResultParse(BaseModel):
-    task_id: uuid.uuid4
+    task_id: UUID
+    task_id: UUID

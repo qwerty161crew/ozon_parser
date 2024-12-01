@@ -2,14 +2,14 @@ from .parse import (
     CheckTaskStatus,
     CreateTaskParser,
     GetResultParse,
-    ReposneIdTask,
     ResponeCheckTask,
+    ResponseIdTask,
 )
 
 __all__ = [
     "CreateTaskParser",
     "CheckTaskStatus",
-    "ReposneIdTask",
+    "ResponseIdTask",
     "ResponeCheckTask",
     "GetResultParse",
 ]
