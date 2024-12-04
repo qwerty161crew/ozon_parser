@@ -47,17 +47,13 @@ class Publisher:
         'product_type': "",
         }
         """
-        # if self.connect is None:
         channel: aio_pika.abc.AbstractChannel = await self.connect.channel()
 
         async with self.connect:
-            # print(json.dumps(message), "1322222222222222222222222222222")
-            print(json.dumps(message))
             await channel.default_exchange.publish(
                 Message(body=json.dumps(message).encode("utf-8")),
                 routing_key=routing_key,
             )
-            await asyncio.sleep(25)
 
 
 async def get_publisher():

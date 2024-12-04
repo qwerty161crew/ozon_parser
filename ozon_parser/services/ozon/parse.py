@@ -30,7 +30,7 @@ class ParserService:
 
         async with self.publisher as producer:
             await producer.publish_message(
-                message=publish_message, routing_key="parse_result"
+                message=publish_message, routing_key="ozon_api"
             )
         return ResponseIdTask(task_id=task_id)
 

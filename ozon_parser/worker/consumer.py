@@ -36,7 +36,7 @@ class Consumer:
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         await self.close_connection()
 
-    async def listen(self, loop):
+    async def listen(self):
         async with self.connect:
             queue_name = "parse_result"
             channel: aio_pika.abc.AbstractChannel = await self.connect.channel()
@@ -49,29 +49,3 @@ class Consumer:
                     async with message.process():
                         result = message.body.decode()
                         print(result)
-
-
-async def main(loop):
-    """
-    RESPONSE Parser
-    {
-    "task_id": UUID,
-    "state": "Complete",
-    "Message": "Complete"
-    }
-    """
-    repository = await get_repository()
-    async with Consumer(
-        user=config.rabbig_mq.user,
-        host=config.rabbig_mq.host,
-        port=config.rabbig_mq.port,
-        password=config.rabbig_mq.password,
-        repository=repository,
-    ) as consumer:
-        await consumer.listen(loop)
-
-
-if __name__ == "__main__":
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main(loop))
-    loop.close()
